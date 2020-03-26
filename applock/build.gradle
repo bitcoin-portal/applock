@@ -1,7 +1,14 @@
 buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+
     dependencies {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.android.tools.build:gradle:3.4.2'
+
     }
 }
 
@@ -12,7 +19,7 @@ android {
     buildToolsVersion "28.0.3"
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion 28
     }
 
@@ -24,8 +31,14 @@ android {
     }
 }
 
+repositories {
+    jcenter()
+    google()
+}
+
 dependencies {
     implementation "androidx.appcompat:appcompat:1.0.0"
+    implementation 'androidx.biometric:biometric:1.0.1'
 }
 
 group = 'com.guardanis'
