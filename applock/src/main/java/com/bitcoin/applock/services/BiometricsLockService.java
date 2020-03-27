@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.biometric.BiometricManager;
@@ -78,10 +77,9 @@ public class BiometricsLockService extends LockService {
             }
         };
 
-        Log.d("Biometric", "shown delegate: " + delegate);
 
         promptInfo = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle("Authenticate")
+                .setTitle(context.getString(R.string.applock__dialog_title))
                 .setDeviceCredentialAllowed(true)
                 .build();
 
@@ -109,7 +107,6 @@ public class BiometricsLockService extends LockService {
                 super.onAuthenticationSucceeded(result);
                 notifyEnrolled(context);
                 final @NonNull BiometricPrompt.AuthenticationResult myResult = result;
-                Log.d("Biometric", "success delegate: " + delegate);
                 savedDelegate.onAuthenticationSuccess(myResult);
             }
 

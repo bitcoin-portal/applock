@@ -12,8 +12,8 @@
     <string name="applock__description_create_fingerprint_paused">Fingerprint authentication canceled. Reload this
         content to restart.
     </string>
-    <string name="applock__description_create_fallback" translatable="false">Create a PIN for Fallback</string>
-    <string name="applock__description_create_biometric" translatable="false">Initializing Applock Authentication</string>
+    <string name="applock__description_create_fallback">Create a passcode for fallback</string>
+    <string name="applock__description_create_biometric">Initializing applock authentication</string>
     <string name="applock__description_create_pin">Create a PIN to secure this application.</string>
     <string name="applock__description_create_pin_reattempt">PINs didn\'t match. Try again.</string>
     <string name="applock__description_unlock_fingerprint">Scan your fingerprint to unlock.</string>
@@ -21,7 +21,8 @@
         %1$s
     </string>
     <string name="applock__description_unlock_pin">Enter your 4-digit PIN.</string>
-    <string name="applock__description_biometric" translatable="false">Authenticate to Unlock</string>
+    <string name="applock__description_biometric">Authenticate to unlock</string>
+    <string name="applock__dialog_title">Authenticate</string>
     <string name="applock__fingerprint_alias">AppLock</string>
     <string name="applock__fingerprint_error_hardware">Missing fingerprint hardware?</string>
     <string name="applock__fingerprint_error_none">No fingerprints found! Enable them in your system settings.</string>
@@ -32,9 +33,9 @@
     </string>
     <string name="applock__fingerprint_error_unknown">Something weird happened.</string>
     <string name="applock__fingerprint_error_unrecognized">Your fingerprint wasn\'t recognized.</string>
-    <string name="applock__biometric_error" translatable="false">Authentication Failed</string>
-    <string name="applock__biometric_error_not_enrolled" translatable="false">No associated biometrics credentials found</string>
-    <string name="applock__biometric_error_cancelled" translatable="false">Biometric authentication cancelled, click on image below to authenticate again</string>
+    <string name="applock__biometric_error">Authentication Failed</string>
+    <string name="applock__biometric_error_not_enrolled">No associated biometrics credentials found</string>
+    <string name="applock__biometric_error_cancelled">Biometric authentication cancelled, click on image below to authenticate again</string>
     <string name="applock__password_char" />
     <string name="applock__toast_unlock_required">You can\'t do that</string>
     <string name="applock__unlock_error_insufficient_selection">Wrong number of digits! Please try again</string>

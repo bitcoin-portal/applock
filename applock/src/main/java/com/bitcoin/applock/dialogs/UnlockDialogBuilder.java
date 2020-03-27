@@ -2,7 +2,6 @@ package com.bitcoin.applock.dialogs;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.util.Log;
 import android.view.View;
 
 import com.bitcoin.applock.AppLock;
@@ -40,7 +39,6 @@ public class UnlockDialogBuilder extends AppLockDialogBuilder<UnlockViewControll
     protected UnlockViewController buildViewControllerInstance(View parent) {
         UnlockViewController controller = new UnlockViewController(activity.get(), parent);
         controller.setDelegate(this);
-        Log.d("LockCreation", "controller " + controller + " Delegate: " + this);
 
         return controller;
     }

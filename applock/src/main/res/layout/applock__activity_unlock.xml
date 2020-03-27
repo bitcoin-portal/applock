@@ -15,6 +15,6 @@
             android:layout_marginBottom="36dp"/>
     <include
             android:id="@+id/pin__container"
-            layout="@layout/applock__unlock"/>
+            layout="@layout/applock__unlock_activity" />
 
 </LinearLayout>
