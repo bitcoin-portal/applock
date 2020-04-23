@@ -116,8 +116,11 @@ public class BiometricsLockService extends LockService {
                 savedDelegate.onAuthenticationFailed(context.getString(R.string.applock__biometric_error));
             }
         });
-
-        biometricPrompt.authenticate(promptInfo);
+        try {
+            biometricPrompt.authenticate(promptInfo);
+        } catch (Exception e) {
+            savedDelegate.onAuthenticationFailed(context.getString(R.string.applock__biometrics_prompt_failure));
+        }
     }
 
 

@@ -36,6 +36,7 @@
     <string name="applock__biometric_error">Authentication Failed</string>
     <string name="applock__biometric_error_not_enrolled">No associated biometrics credentials found</string>
     <string name="applock__biometric_error_cancelled">Biometric authentication cancelled, click on image below to authenticate again</string>
+    <string name="applock__biometrics_prompt_failure">Error authenticating with Biometrics \n If you are using a Samsung device, please disable face authentication</string>
     <string name="applock__password_char" />
     <string name="applock__toast_unlock_required">You can\'t do that</string>
     <string name="applock__unlock_error_insufficient_selection">Wrong number of digits! Please try again</string>
