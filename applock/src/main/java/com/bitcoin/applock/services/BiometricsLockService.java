@@ -30,7 +30,9 @@ public class BiometricsLockService extends LockService {
 
     private boolean isBiometricCompatible(Context context) {
         BiometricManager biometricManager = BiometricManager.from(context);
-        switch (biometricManager.canAuthenticate()) {
+        switch (biometricManager.canAuthenticate(
+                BiometricManager.Authenticators.BIOMETRIC_WEAK |
+                        BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {
             case BiometricManager.BIOMETRIC_SUCCESS:
                 return true;
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
@@ -80,7 +82,9 @@ public class BiometricsLockService extends LockService {
 
         promptInfo = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle(context.getString(R.string.applock__dialog_title))
-                .setDeviceCredentialAllowed(true)
+                .setAllowedAuthenticators(
+                        BiometricManager.Authenticators.BIOMETRIC_WEAK |
+                                BiometricManager.Authenticators.DEVICE_CREDENTIAL)
                 .build();
 
         savedDelegate = delegate;
