@@ -1,16 +1,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.bitcoin.applock">
+    package="com.bitcoin.applock">
 
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission
+        android:name="android.permission.USE_BIOMETRIC"
+        android:requiredFeature="false" />
+
 
     <uses-feature
-            android:name="android.hardware.fingerprint"
-            android:required="false" />
+        android:name="android.hardware.fingerprint"
+        android:required="false" />
 
     <application>
         <activity
-                android:name="com.bitcoin.applock.activities.LockableAppCompatActivity"
-                android:configChanges="orientation|keyboardHidden|screenSize"
+            android:name="com.bitcoin.applock.activities.LockableAppCompatActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait"
                 android:theme="@style/applock__theme_activity" />
