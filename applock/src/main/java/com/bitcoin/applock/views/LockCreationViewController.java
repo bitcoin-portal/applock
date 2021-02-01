@@ -230,6 +230,7 @@ public class LockCreationViewController extends AppLockViewController
         AppLock.getInstance(activity)
                 .getLockService(FingerprintLockService.class)
                 .enroll(activity, this);
+        handleLockCreated();
     }
 
     protected void attemptBiometricAuthentication() {
@@ -241,6 +242,8 @@ public class LockCreationViewController extends AppLockViewController
         AppLock.getInstance(activity)
                 .getLockService(BiometricsLockService.class)
                 .enroll(activity, this);
+
+        handleLockCreated();
     }
 
     @Override
