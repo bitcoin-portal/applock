@@ -5,8 +5,9 @@
     <color name="colorPrimaryDark">#3081BC</color>
     <color name="colorAccent">#3C9ADF</color>
     <color name="pitchBlack">#131720</color>
+    <color name="surfaceBackground">#FFFFFF</color>
     <color name="applock__action_settings">#95A5A6</color>
-    <color name="applock__activity_background">#FAFAFA</color>
+    <color name="applock__activity_background">@color/background</color>
     <color name="applock__create_choose_option_bg">#00FFFFFF</color>
     <color name="applock__create_choose_option_bg_pressed">#11000000</color>
     <color name="applock__description_text">#7F8C8D</color>
@@ -15,6 +16,8 @@
     <color name="applock__pin_selected">#0AC18E</color>
     <color name="applock__item_text">#FAFAFA</color>
 
+    <color name="background">@color/xxLightGray</color>
+    <color name="dialogBackground">@color/surfaceBackground</color>
     <color name="xxLightGray">#F4F5F8</color>
 
 </resources>
