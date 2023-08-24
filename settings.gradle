@@ -1,1 +1,1 @@
-include ':applock', ':applock-sample'
+include ':applock'
