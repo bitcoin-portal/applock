@@ -50,10 +50,16 @@ public class UnlockViewController extends AppLockViewController implements AppLo
         FingerprintLockService fingerprintService = AppLock.getInstance(parent.getContext())
                 .getLockService(FingerprintLockService.class);
 
-        if (fingerprintService.isEnrolled(parent.getContext()))
+        if (biometricsLockService.isEnrollmentEligible(parent.getContext())){
+            setupBiometricUnlock();
+            return;
+        }
+
+        if (fingerprintService.isEnrolled(parent.getContext())) {
             setupFingerprintUnlock();
-        else
+        } else {
             setupPINUnlock();
+        }
     }
 
     protected void setupPINUnlock() {
