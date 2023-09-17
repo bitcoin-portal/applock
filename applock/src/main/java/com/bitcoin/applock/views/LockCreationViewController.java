@@ -1,9 +1,12 @@
 package com.bitcoin.applock.views;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.provider.Settings;
 import android.view.View;
 
 import androidx.biometric.BiometricPrompt;
@@ -57,16 +60,7 @@ public class LockCreationViewController extends AppLockViewController
             return;
         }
 
-
-        FingerprintLockService fingerprintService = AppLock.getInstance(activity)
-                .getLockService(FingerprintLockService.class);
-
-        if (!fingerprintService.isEnrollmentEligible(activity)) {
-            setupPINCreation();
-
-            return;
-        }
-
+       // setupPINCreation();
         setupCreationChooser();
     }
 
@@ -75,18 +69,22 @@ public class LockCreationViewController extends AppLockViewController
 
         hide(fingerprintAuthImageView);
         hide(pinInputView);
-        hide(actionSettings);
         hide(actionFallback);
         hide(biometricsImageView);
+        hide(chooserParent);
 
-        show(chooserParent);
+        setDescription(R.string.applock__enable_screen_lock);
 
-        setDescription(R.string.applock__description_chooser);
-
-        View parent = this.parent.get();
+        final View parent = this.parent.get();
 
         if (parent == null)
             return;
+
+        parent.findViewById(R.id.pin__action_settings).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                handleActionSettingsClicked(AppLock.ERROR_CODE_SCREEN_LOCK_DISABLED);
+            }
+        });
 
         parent.findViewById(R.id.pin__create_option_pin)
                 .setOnClickListener(new View.OnClickListener() {
@@ -104,7 +102,7 @@ public class LockCreationViewController extends AppLockViewController
     }
 
     protected void setupBiometricCreation() {
-        this.displayVariant = DisplayVariant.PIN_CREATION;
+        this.displayVariant = DisplayVariant.BIOMETRICS_AUTHENTICATION;
 
         hide(fingerprintAuthImageView);
         hide(chooserParent);

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.TextView;
 
@@ -43,7 +44,6 @@ public abstract class AppLockViewController implements LifeCycleUtils.AppLockAct
         this.descriptionView = new WeakReference(parent.findViewById(R.id.pin__description));
         this.actionSettings = new WeakReference<View>(parent.findViewById(R.id.pin__action_settings));
         this.actionFallback = new WeakReference<View>(parent.findViewById(R.id.pin__action_fallback));
-
         this.biometricsImageView = new WeakReference(parent.findViewById(R.id.pin__biometric_image));
 
         this.pinInputView = new WeakReference(parent.findViewById(R.id.pin__input_view));
@@ -171,11 +171,12 @@ public abstract class AppLockViewController implements LifeCycleUtils.AppLockAct
      */
     public Intent getSettingsIntent(int errorCode) {
         switch (errorCode) {
+            case AppLock.ERROR_CODE_SCREEN_LOCK_DISABLED:
             case AppLock.ERROR_CODE_FINGERPRINTS_PERMISSION_REQUIRED:
                 // TODO: App settings?
             case AppLock.ERROR_CODE_FINGERPRINTS_EMPTY:
             case AppLock.ERROR_CODE_FINGERPRINTS_MISSING_HARDWARE:
-                return new Intent(android.provider.Settings.ACTION_SECURITY_SETTINGS);
+                return new Intent(Settings.ACTION_SECURITY_SETTINGS);
             default:
                 return null;
         }

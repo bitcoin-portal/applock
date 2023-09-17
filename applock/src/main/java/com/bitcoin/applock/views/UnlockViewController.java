@@ -2,8 +2,10 @@ package com.bitcoin.applock.views;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.provider.Settings;
 import android.view.View;
 
 import androidx.core.content.ContextCompat;
@@ -41,19 +43,14 @@ public class UnlockViewController extends AppLockViewController implements AppLo
         BiometricsLockService biometricsLockService = AppLock.getInstance(parent.getContext())
                 .getLockService(BiometricsLockService.class);
 
-        if (biometricsLockService.isEnrolled(parent.getContext())) {
+        if (biometricsLockService.isEnrolled(parent.getContext()) || biometricsLockService.isEnrollmentEligible(parent.getContext())) {
             setupBiometricUnlock();
+            //setupFingerprintUnlock();
             return;
         }
-
 
         FingerprintLockService fingerprintService = AppLock.getInstance(parent.getContext())
                 .getLockService(FingerprintLockService.class);
-
-        if (biometricsLockService.isEnrollmentEligible(parent.getContext())){
-            setupBiometricUnlock();
-            return;
-        }
 
         if (fingerprintService.isEnrolled(parent.getContext())) {
             setupFingerprintUnlock();
@@ -97,7 +94,6 @@ public class UnlockViewController extends AppLockViewController implements AppLo
         AppLock.getInstance(activity)
                 .attemptPINUnlock(input, this);
     }
-
     protected void setupBiometricUnlock() {
         this.displayVariant = DisplayVariant.BIOMETRIC_AUTHENTICATION;
         setDescription(R.string.applock__description_biometric);
@@ -122,9 +118,18 @@ public class UnlockViewController extends AppLockViewController implements AppLo
         View actionFallback = this.actionFallback.get();
 
         hide(pinInputView);
-        hide(actionSettings);
-        hide(biometricsImageView);
-        show(fingerprintAuthImageView);
+        show(actionSettings);
+        hide(this.actionFallback);
+        show(biometricsImageView);
+        hide(fingerprintAuthImageView);
+
+
+        parent.get().findViewById(R.id.pin__action_settings).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                handleActionSettingsClicked(AppLock.ERROR_CODE_SCREEN_LOCK_DISABLED);
+            }
+        });
+
         actionFallback.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 setupPINUnlock();
@@ -132,10 +137,9 @@ public class UnlockViewController extends AppLockViewController implements AppLo
         });
 
 
-        setDescription(R.string.applock__description_unlock_fingerprint);
-
+        setDescription(R.string.applock__fingerprint_depreciated);
         if (autoAuthorizationEnabled)
-            attemptFingerprintAuthentication();
+            attemptBiometricAuthentication();
     }
 
     protected void attemptFingerprintAuthentication() {
@@ -216,25 +220,6 @@ public class UnlockViewController extends AppLockViewController implements AppLo
 
         if (displayVariant == DisplayVariant.FINGERPRINT_AUTHENTICATION)
             setDescription(R.string.applock__description_create_fingerprint_paused);
-    }
-
-    @Override
-    public void onActivityResumed() {
-        Activity activity = this.activity.get();
-
-        if (activity == null || displayVariant != DisplayVariant.FINGERPRINT_AUTHENTICATION)
-            return;
-
-        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
-            setDescription(R.string.applock__fingerprint_error_permission_multiple);
-            updateActionSettings(AppLock.ERROR_CODE_FINGERPRINTS_PERMISSION_REQUIRED);
-            return;
-        }
-
-        setDescription(R.string.applock__description_unlock_fingerprint);
-        hide(actionSettings);
-
-        attemptFingerprintAuthentication();
     }
 
     @Override

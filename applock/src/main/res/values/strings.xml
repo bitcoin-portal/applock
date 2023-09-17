@@ -45,6 +45,8 @@
     <string name="applock__unlock_error_retry_limit_exceeded">You failed too many times. You may try again in %1$s.
     </string>
 
+    <string name="applock__enable_screen_lock">To secure your wallet, please enable Screen Lock on your device</string>
+    <string name="applock__fingerprint_depreciated">Legacy Fingerprint authentication is no longer supported, please enable Screen Lock to continue</string>
 
     <item name="applock__empty_item_min_size_percent" format="float" translatable="false" type="string">
         0.2
