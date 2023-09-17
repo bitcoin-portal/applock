@@ -25,10 +25,10 @@ public class BiometricsLockService extends LockService {
     @Override
     public boolean isEnrollmentEligible(Context context) {
         KeyguardManager keyguard = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
-        return Build.VERSION.SDK_INT > 23 && keyguard.isDeviceSecure() && isBiometricCompatible(context);
+        return keyguard.isDeviceSecure() && isBiometricCompatible(context);
     }
 
-    private boolean isBiometricCompatible(Context context) {
+    boolean isBiometricCompatible(Context context) {
         BiometricManager biometricManager = BiometricManager.from(context);
         switch (biometricManager.canAuthenticate(
                 BiometricManager.Authenticators.BIOMETRIC_WEAK |
@@ -38,6 +38,9 @@ public class BiometricsLockService extends LockService {
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+            case BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED:
+            case BiometricManager.BIOMETRIC_ERROR_UNSUPPORTED:
+            case BiometricManager.BIOMETRIC_STATUS_UNKNOWN:
                 break;
         }
         return false;
@@ -60,9 +63,6 @@ public class BiometricsLockService extends LockService {
     }
 
     protected void authenticate(Context context, boolean localEnrollmentRequired, AuthenticationDelegate delegate) {
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
-            return;
 
         showBiometricPrompt(context, delegate);
     }
