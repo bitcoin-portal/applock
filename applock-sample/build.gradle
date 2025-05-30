@@ -1,12 +1,3 @@
-buildscript {
-    ext.kotlin_version = '1.2.71'
-
-    dependencies {
-        classpath 'com.novoda:gradle-android-command-plugin:1.2.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'android-command'
@@ -14,6 +5,7 @@ apply plugin: 'android-command'
 android {
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
+    namespace = "com.bitcoin.applock.sample"
 
     defaultConfig {
         minSdkVersion 14

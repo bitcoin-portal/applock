@@ -8,11 +8,13 @@
         android:padding="@dimen/applock__activity_padding">
 
     <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            app:srcCompat="@drawable/logo_bitcoincom"
-            android:layout_marginTop="36dp"
-            android:layout_marginBottom="36dp"/>
+        android:layout_width="200dp"
+        android:layout_marginTop="48dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center_horizontal"
+        app:srcCompat="@drawable/logo_bitcoincom_applock"/>
+
+
     <include
             android:id="@+id/pin__container"
             layout="@layout/applock__unlock_activity" />
