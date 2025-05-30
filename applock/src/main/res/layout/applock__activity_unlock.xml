@@ -7,12 +7,28 @@
     android:orientation="vertical"
         android:padding="@dimen/applock__activity_padding">
 
-    <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            app:srcCompat="@drawable/logo_bitcoincom"
-            android:layout_marginTop="36dp"
-            android:layout_marginBottom="36dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="24dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo_btc"
+            android:contentDescription="@null" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="-24dp"
+            app:srcCompat="@drawable/logo_bitcoincom"/>
+
+    </LinearLayout>
+
     <include
             android:id="@+id/pin__container"
             layout="@layout/applock__unlock_activity" />

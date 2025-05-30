@@ -1,21 +1,13 @@
-buildscript {
-    repositories {
-        jcenter()
-        google()
-    }
-
-    dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
-        classpath 'com.android.tools.build:gradle:3.4.2'
-
-    }
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
 }
 
-apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 34
     buildToolsVersion "28.0.3"
+    namespace = "com.bitcoin.applock"
 
     defaultConfig {
         minSdkVersion 21
@@ -31,11 +23,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
-
-repositories {
-    jcenter()
-    google()
 }
 
 dependencies {
