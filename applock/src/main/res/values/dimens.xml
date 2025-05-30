@@ -1,6 +1,6 @@
 <resources>
 
-    <dimen name="applock__action_settings">14dip</dimen>
+    <dimen name="applock__action_settings">16dip</dimen>
     <dimen name="applock__action_settings_margin_top">24dip</dimen>
     <dimen name="applock__action_settings_padding">12dip</dimen>
     <dimen name="applock__activity_padding">24dip</dimen>

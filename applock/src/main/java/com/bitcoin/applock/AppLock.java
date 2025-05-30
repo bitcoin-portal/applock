@@ -29,6 +29,8 @@ public class AppLock {
     public static final int ERROR_CODE_FINGERPRINTS_EMPTY = 3;
     public static final int ERROR_CODE_FINGERPRINTS_NOT_LOCALLY_ENROLLED = 4;
     public static final int ERROR_CODE_SDK_VERSION_MINIMUM = 5;
+    public static final int ERROR_CODE_SCREEN_LOCK_DISABLED = 6;
+
     public Activity fragmentActivity;
 
     public Dialog activeDialog;
